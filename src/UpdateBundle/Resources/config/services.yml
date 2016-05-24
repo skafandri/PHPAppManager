@@ -1,0 +1,26 @@
+parameters:
+     url_list_packages: 'https://packagist.org/packages/list.json'
+     url_detail_package: 'https://packagist.org/packages/'
+     
+services:
+      list_packages:
+           class: UpdateBundle\ListPackages
+           arguments: 
+               - %url_list_packages%
+               - %url_detail_package%
+               - "@old_sound_rabbit_mq.list_package_producer"
+               
+      store_packages:
+          class: UpdateBundle\Consumer\UpdatePackagesNames
+          arguments: 
+              - '@doctrine.odm.mongodb.document_manager'
+              
+              
+           
+          
+         
+              
+              
+                
+            
+            

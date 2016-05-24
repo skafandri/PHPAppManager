@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: "@UpdateBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -76,3 +77,48 @@ doctrine_mongodb:
     document_managers:
         default:
             auto_mapping: true
+
+
+old_sound_rabbit_mq:
+            connections:
+                 default:
+                       host:     'localhost'
+                       port:     5672
+                       user:     'symfony'
+                       password: 'rabbit'
+                       vhost:    '/'
+                       lazy:     false
+                     
+                     
+          
+            producers:
+                list_package:
+                    connection:     default
+                    
+                    exchange_options: { name: 'list_package', type: direct } 
+                    queue_options:
+                        name: 'database/update'
+                        routing_keys:
+                            - 'database/update'
+            consumers:
+                store_packages:
+                    connection:     default
+                    exchange_options: { name: 'list_package', type: direct }
+                    queue_options: {name: 'database/update'}
+                    callback:       store_packages
+                    
+                        
+                    
+                    
+                
+           
+                    
+                
+        
+            
+       
+            
+                   
+                
+             
+                  

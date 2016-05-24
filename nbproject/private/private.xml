@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/home/ameni/NetBeansProjects/PHPAppManager/app/config/config.yml</file>
+            <file>file:/home/ameni/NetBeansProjects/PHPAppManager/app/config/routing.yml</file>
+            <file>file:/home/ameni/NetBeansProjects/PHPAppManager/app/config/config_test.yml</file>
+            <file>file:/home/ameni/NetBeansProjects/PHPAppManager/app/config/parameters.yml</file>
+            <file>file:/home/ameni/NetBeansProjects/PHPAppManager/src/UpdateBundle/UpdateBundle.php</file>
+            <file>file:/home/ameni/NetBeansProjects/PHPAppManager/src/UpdateBundle/Consumer/UpdatePackagesNames.php</file>
+            <file>file:/home/ameni/NetBeansProjects/PHPAppManager/src/UpdateBundle/Resources/config/services.yml</file>
+            <file>file:/home/ameni/NetBeansProjects/PHPAppManager/src/UpdateBundle/Document/Package.php</file>
+            <file>file:/home/ameni/NetBeansProjects/PHPAppManager/app/config/parameters.yml.dist</file>
+            <file>file:/home/ameni/NetBeansProjects/PHPAppManager/src/UpdateBundle/Command/ListPackagesCommand.php</file>
+            <file>file:/home/ameni/NetBeansProjects/PHPAppManager/app/AppKernel.php</file>
+            <file>file:/home/ameni/NetBeansProjects/PHPAppManager/src/UpdateBundle/ListPackages.php</file>
+            <file>file:/home/ameni/NetBeansProjects/PHPAppManager/composer.json</file>
+            <file>file:/home/ameni/NetBeansProjects/PHPAppManager/src/UpdateBundle/Tests/Controller/DefaultControllerTest.php</file>
+        </group>
+    </open-files>
+</project-private>
