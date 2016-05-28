@@ -16,25 +16,35 @@ namespace UpdateBundle\Consumer;
 
 use OldSound\RabbitMqBundle\RabbitMq\ConsumerInterface;
 use PhpAmqpLib\Message\AMQPMessage;
-use Doctrine\Common\Persistence\ObjectManager;
-use UpdateBundle\Connection;
+
+
 
 class UpdatePackagesNames implements ConsumerInterface {
 
-    private $documentManager;
-
-    public function __construct(ObjectManager $om) {
-        // The property $documentManager is now set to the DocumentManager
-
-
-        $this->documentManager = $om;
-    }
-
-    public function execute(AMQPMessage $msg) {
-        $message = $msg->body;
-       Connection::connection($this->documentManager)->packages->insert(json_decode($message, true));
+   
+    private $urlDetailPackage;
+    private $serviceStorePackagesDetails;
+    public function __construct($urlDetailPackage,$serviceStorePackagesDetails) {
       
-        
+
+
+        $this->urlDetailPackage=$urlDetailPackage;
+        $this->serviceStorePackagesDetails=$serviceStorePackagesDetails;
     }
+     public function execute(AMQPMessage $msg) {
+        $message = $msg->body;
+     
+  $parameters= json_decode(file_get_contents($this->urlDetailPackage . $message. ".json"), true);
+ 
+   $this->serviceStorePackagesDetails->process(json_encode($parameters,true));
+    
+ 
+    
+      
+     }
+    
+
+    
+    
 
 }

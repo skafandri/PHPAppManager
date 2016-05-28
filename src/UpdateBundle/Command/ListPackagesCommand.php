@@ -23,7 +23,7 @@ class ListPackagesCommand extends ContainerAwareCommand{
  
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->getContainer()->get('list_packages')->process();
+        $this->getContainer()->get('store_packages_names')->process();
     }
    
 }

@@ -92,20 +92,38 @@ old_sound_rabbit_mq:
                      
           
             producers:
-                list_package:
+                store_packages_names:
                     connection:     default
                     
-                    exchange_options: { name: 'list_package', type: direct } 
+                    exchange_options: { name: 'packages_names', type: direct } 
                     queue_options:
-                        name: 'database/update'
+                        name: 'packages/names'
                         routing_keys:
-                            - 'database/update'
-            consumers:
-                store_packages:
+                            - 'packages/names'
+                            
+                store_packages_details:
                     connection:     default
-                    exchange_options: { name: 'list_package', type: direct }
-                    queue_options: {name: 'database/update'}
-                    callback:       store_packages
+                    
+                    exchange_options: { name: 'packages_details', type: direct } 
+                    queue_options:
+                        name: 'packages/details'
+                        routing_keys:
+                            - 'packages/details'
+                    
+            consumers:
+                list_packages_details:
+                    connection:     default
+                    exchange_options: { name: 'packages_names', type: direct }
+                    queue_options: {name: 'packages/names'}
+                    callback:       list_packages_details
+                    qos_options:      {prefetch_size: 0, prefetch_count: 1, global: false}
+                persist_packages:
+                    connection:     default
+                    exchange_options: { name: 'packages_details', type: direct }
+                    queue_options: {name: 'packages/details'}
+                    callback:       persist_packages
+                    qos_options:      {prefetch_size: 0, prefetch_count: 1, global: false}
+                    
                     
                         
                     
