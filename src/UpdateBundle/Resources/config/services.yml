@@ -23,6 +23,7 @@ services:
            class: UpdateBundle\Consumer\UpdateDatabase
            arguments: 
               - "@doctrine.odm.mongodb.document_manager"
+              - "@logger"
               
           
               

@@ -1,9 +1,10 @@
 <?php
 namespace UpdateBundle\Consumer;
 
+use Doctrine\Common\Persistence\ObjectManager;
 use OldSound\RabbitMqBundle\RabbitMq\ConsumerInterface;
 use PhpAmqpLib\Message\AMQPMessage;
-use Doctrine\Common\Persistence\ObjectManager;
+use Psr\Log\LoggerInterface;
 use UpdateBundle\Connection;
 
 /**
@@ -14,14 +15,24 @@ use UpdateBundle\Connection;
 class UpdateDatabase implements ConsumerInterface {
 
     private $documentManager;
+    
+    /**
+     *
+     * @var LoggerInterface
+     */
+    private $logger;
 
-    public function __construct(ObjectManager $om) {
+    public function __construct(ObjectManager $om, LoggerInterface $logger) {
         $this->documentManager = $om;
+        $this->logger = $logger;
+                
     }
 
     public function execute(AMQPMessage $msg) {
-        $message = $msg->body;
-        Connection::connection($this->documentManager)->packages->insert(json_decode($message, true), array("safe" => true, 'upsert' => true));
+        $message = json_decode($msg->body, true);
+        $this->logger->info('Received', $message);
+        Connection::connection($this->documentManager)->packages->insert($message, array("safe" => true, 'upsert' => true));
+        $this->logger->info('Inserted');
     }
 
 }
