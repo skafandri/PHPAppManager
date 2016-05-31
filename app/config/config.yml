@@ -82,11 +82,11 @@ doctrine_mongodb:
 old_sound_rabbit_mq:
             connections:
                  default:
-                       host:     'localhost'
-                       port:     5672
-                       user:     'symfony'
-                       password: 'rabbit'
-                       vhost:    '/'
+                       host:     %amqp_host%
+                       port:     %amqp_port%
+                       user:     %amqp_user%
+                       password: %amqp_password%
+                       vhost:    %amqp_vhost%
                        lazy:     false
                      
                      
