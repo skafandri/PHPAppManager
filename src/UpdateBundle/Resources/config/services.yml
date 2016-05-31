@@ -8,6 +8,7 @@ services:
            arguments: 
                - %url_list_packages%
                - "@old_sound_rabbit_mq.store_packages_names_producer"
+               - "@doctrine.odm.mongodb.document_manager"
                
       list_packages_details:
           class: UpdateBundle\Consumer\UpdatePackagesNames
